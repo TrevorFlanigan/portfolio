@@ -1,0 +1,14 @@
+.section {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+li.fadein {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+li.fadeout {
+  opacity: 0;
+  transition: opacity 0.3s;
+}

@@ -1,0 +1,40 @@
+- Launchpad
+    - full Stack developer
+    - Sync
+    - AGILE Development
+
+- SecureKey
+    - Full Stack Developer
+    - COOP Term Extended
+    - AGILE Development
+    - Deployed a Full Stack app to Heroku
+    - API Development
+    - Used Postman well
+    - Independent Work
+
+- NWHACKS
+    - First Hackathon
+    - Developed a Demo-able project
+    - Worked with brand New Team (just met them at the hackathon)
+
+- School
+    - Dean's List oF Honors or whatever
+    - Averages
+    - CPEN 281, CPEN 221, CS221, Overall Averages
+    - Dancing Robot
+    - Remote Controllable Guy/ Line Follower (Built Mobile App and was Team Leader)
+    - UBC Meetable? 
+    - Mention of StudioCORE
+
+- Projects
+    - TrevRavenous
+    - Jammming
+    - Ask if I can talk About SK UNI project? 
+    - 
+- Languages and Frameworks
+    - 3 Yrs React Experience
+    - 5 Yrs JS EXP
+    - NodeJS
+    - MongoDB
+    - Css/HTML/JS bundle
+    - Postman Experience building APIS

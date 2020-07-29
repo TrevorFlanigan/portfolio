@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App.jsx';
 import * as serviceWorker from './serviceWorker';
+import NavBar from "./components/NavBar";
 
+let Display = <div>
+  <App />
+</div>
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {Display}
   </React.StrictMode>,
   document.getElementById('root')
 );

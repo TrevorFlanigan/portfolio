@@ -1,0 +1,29 @@
+.columns {
+  display: flex;
+  flex-direction: row;
+  column-count: 3;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.c {
+  justify-content: center;
+  background-color: aqua;
+  width: 33.3333333%;
+}
+
+@media only screen and (max-width: 480px) {
+  .columns {
+    display: flex;
+    flex-direction: column;
+    column-count: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .c {
+    width: 100%;
+    height: 33.3333333%;
+  }
+}
