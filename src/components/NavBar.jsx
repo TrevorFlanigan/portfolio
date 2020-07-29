@@ -13,6 +13,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Radium from "radium";
 
 class NavBar extends Component {
+  renderList = () => {
+    return;
+  };
   render() {
     const navIconSection = {
       display: "flex",
@@ -72,7 +75,7 @@ class NavBar extends Component {
             <Typography variant="h6">Trevor Flanigan</Typography>
           </div>
           <ol style={navMenuSection} className="mdonly">
-            <li style={navLiElement} key={0}>
+            <li className={fade} style={navLiElement} key={0}>
               <Typography className={classes.NavItem} variant="subtitle1">
                 Work
               </Typography>

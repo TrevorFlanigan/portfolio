@@ -5,10 +5,14 @@
 
 li.fadein {
   opacity: 1;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateX(0em);
 }
 
 li.fadeout {
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
+  /* transition-delay: transform 0.5s; */
+  transform: translateX(2em);
+  will-change: transform, opacity;
 }
