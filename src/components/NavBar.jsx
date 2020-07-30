@@ -13,19 +13,27 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Radium from "radium";
 
 class NavBar extends Component {
-  renderList = () => {
-    return;
+  scroll = (id) => {
+    document.getElementById(id).scrollIntoView({
+      behavior: "smooth",
+    });
   };
   render() {
     const navIconSection = {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      ":hover": {
-        cursor: "pointer",
-        color: "white",
-        transition: "color .3s",
-      },
+      borderRadius: "2px",
+      paddingLeft: Theme.spacing(1),
+      paddingRight: Theme.spacing(1),
+      whiteSpace: "nowrap",
+    };
+
+    const contact = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: "2px",
       paddingLeft: Theme.spacing(1),
       paddingRight: Theme.spacing(1),
       whiteSpace: "nowrap",
@@ -51,11 +59,6 @@ class NavBar extends Component {
 
     const navLiElement = {
       padding: Theme.spacing(1),
-      ":hover": {
-        cursor: "pointer",
-        color: "white",
-        transition: "color .3s",
-      },
     };
 
     const classes = this.props.classes;
@@ -70,38 +73,76 @@ class NavBar extends Component {
             position: "sticky",
             top: 0,
             textAlign: "center",
+            backgroundColor: Theme.palette.primary.main,
           }}>
-          <div style={navIconSection}>
+          <div
+            style={navIconSection}
+            className="unselectable clickable"
+            onClick={() => {
+              this.scroll("home");
+            }}>
             <Typography variant="h6">Trevor Flanigan</Typography>
           </div>
           <ol style={navMenuSection} className="mdonly">
-            <li className={fade} style={navLiElement} key={0}>
+            <li
+              className={`${fade} unselectable clickable`}
+              style={navLiElement}
+              key={0}
+              onClick={() => {
+                this.scroll("work");
+              }}>
+              {" "}
               <Typography className={classes.NavItem} variant="subtitle1">
                 Work
               </Typography>
             </li>
-            <li className={fade} style={navLiElement} key={1}>
+            <li
+              className={`${fade} unselectable clickable`}
+              style={navLiElement}
+              key={1}
+              onClick={() => {
+                this.scroll("school");
+              }}>
               <Typography className={classes.NavItem} variant="subtitle1">
                 School
               </Typography>
             </li>
-            <li className={fade} style={navLiElement} key={2}>
+            <li
+              className={`${fade} unselectable clickable`}
+              style={navLiElement}
+              key={2}
+              onClick={() => {
+                this.scroll("projects");
+              }}>
+              {" "}
               <Typography className={classes.NavItem} variant="subtitle1">
                 Projects
               </Typography>
             </li>
-            <li className={fade} style={navLiElement} key={3}>
+            <li
+              className={`${fade} unselectable clickable`}
+              style={navLiElement}
+              key={3}
+              onClick={() => {
+                this.scroll("languages");
+              }}>
               <Typography className={classes.NavItem} variant="subtitle1">
                 Languages and Frameworks
               </Typography>
             </li>
-            <li className={fade} style={navLiElement} key={4}>
-              <Typography className={classes.NavItem} variant="subtitle1">
-                Hackathons
-              </Typography>
-            </li>
           </ol>
           <div style={smallNavInfoSection}>
+            <div
+              className={`${fade} unselectable clickable`}
+              style={contact}
+              key={5}
+              onClick={() => {
+                this.scroll("contact");
+              }}>
+              <Typography className={classes.NavItem} variant="subtitle1">
+                Contact
+              </Typography>
+            </div>
             <Typography className={classes.NavItem} variant="subtitle1">
               <IconButton className={classes.icon}>
                 <MenuIcon />
