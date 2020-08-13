@@ -11,10 +11,22 @@ import Typography from "@material-ui/core/Typography";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import MenuIcon from "@material-ui/icons/Menu";
 import Radium from "radium";
+import Drawer from "./Drawer";
 
 class NavBar extends Component {
+  state = {
+    drawer: false,
+  };
+
+  toggleDrawer = () => {
+    this.setState(() => ({ drawer: !this.state.drawer }));
+    console.log(this.state.drawer);
+  };
+
   scroll = (id) => {
-    document.getElementById(id).scrollIntoView({
+    let elem = document.getElementById(id);
+    if (!elem) return;
+    elem.scrollIntoView({
       behavior: "smooth",
     });
   };
@@ -65,6 +77,12 @@ class NavBar extends Component {
     let fade = isWidthUp("md", this.props.width) ? "fadein" : "fadeout";
     return (
       <ThemeProvider theme={Theme}>
+        <Drawer
+          drawer={this.state.drawer}
+          toggleDrawer={this.toggleDrawer}
+          scroll={this.scroll}
+        />
+
         <nav
           style={{
             zIndex: 1000,
@@ -74,13 +92,15 @@ class NavBar extends Component {
             top: 0,
             textAlign: "center",
             backgroundColor: Theme.palette.primary.main,
-          }}>
+          }}
+        >
           <div
             style={navIconSection}
             className="unselectable clickable"
             onClick={() => {
               this.scroll("home");
-            }}>
+            }}
+          >
             <Typography variant="h6">Trevor Flanigan</Typography>
           </div>
           <ol style={navMenuSection} className="mdonly">
@@ -90,7 +110,8 @@ class NavBar extends Component {
               key={0}
               onClick={() => {
                 this.scroll("work");
-              }}>
+              }}
+            >
               {" "}
               <Typography className={classes.NavItem} variant="subtitle1">
                 Work
@@ -102,7 +123,8 @@ class NavBar extends Component {
               key={1}
               onClick={() => {
                 this.scroll("school");
-              }}>
+              }}
+            >
               <Typography className={classes.NavItem} variant="subtitle1">
                 School
               </Typography>
@@ -113,7 +135,8 @@ class NavBar extends Component {
               key={2}
               onClick={() => {
                 this.scroll("projects");
-              }}>
+              }}
+            >
               {" "}
               <Typography className={classes.NavItem} variant="subtitle1">
                 Projects
@@ -125,7 +148,8 @@ class NavBar extends Component {
               key={3}
               onClick={() => {
                 this.scroll("languages");
-              }}>
+              }}
+            >
               <Typography className={classes.NavItem} variant="subtitle1">
                 Languages and Frameworks
               </Typography>
@@ -138,13 +162,14 @@ class NavBar extends Component {
               key={5}
               onClick={() => {
                 this.scroll("contact");
-              }}>
+              }}
+            >
               <Typography className={classes.NavItem} variant="subtitle1">
                 Contact
               </Typography>
             </div>
             <Typography className={classes.NavItem} variant="subtitle1">
-              <IconButton className={classes.icon}>
+              <IconButton className={classes.icon} onClick={this.toggleDrawer}>
                 <MenuIcon />
               </IconButton>
             </Typography>

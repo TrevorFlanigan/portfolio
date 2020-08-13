@@ -6,10 +6,7 @@ export default class Screen extends Component {
   render() {
     return (
       <ThemeProvider theme={Theme}>
-        <div
-          ref={this.props.refProp}
-          style={{ height: "100vh" }}
-          className="screen container">
+        <div ref={this.props.refProp} className="screen container">
           {this.props.id}
           {this.props.children}
         </div>
