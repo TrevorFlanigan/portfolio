@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import LogoNodejs from "react-ionicons/lib/LogoNodejs";
 import LogoIosMusicalNotes from "react-ionicons/lib/IosMusicalNotes";
 

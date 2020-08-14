@@ -29,11 +29,12 @@ const {
 class Drawer extends Component {
   render() {
     let big = isWidthUp("md", this.props.width);
+
     return (
       <SwipeableDrawer
         anchor="right"
         open={this.props.drawer}
-        onClose={this.props.toggleDrawer}
+        onClose={() => this.props.toggleDrawer(false)}
         onOpen={this.props.toggleDrawer}
       >
         <List>
@@ -43,12 +44,14 @@ class Drawer extends Component {
 
           {big ? (
             <DrawerOption
+              closeDrawer={this.props.toggleDrawer}
               name="SecureKey"
               scroll={this.props.scroll}
               icon={SecureKeyIcon}
             />
           ) : (
             <DrawerOption
+              closeDrawer={this.props.toggleDrawer}
               name="Work"
               scroll={this.props.scroll}
               icon={WorkIcon}
@@ -61,16 +64,19 @@ class Drawer extends Component {
           {big ? (
             <>
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Launchpad"
                 scroll={this.props.scroll}
                 icon={LaunchpadIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Meetable"
                 scroll={this.props.scroll}
                 icon={MeetableIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Courses"
                 scroll={this.props.scroll}
                 icon={UBCIcon}
@@ -78,6 +84,7 @@ class Drawer extends Component {
             </>
           ) : (
             <DrawerOption
+              closeDrawer={this.props.toggleDrawer}
               name="School"
               scroll={this.props.scroll}
               icon={SchoolIcon}
@@ -90,26 +97,31 @@ class Drawer extends Component {
           {big ? (
             <>
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Sync"
                 scroll={this.props.scroll}
                 icon={SyncIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Ravenous"
                 scroll={this.props.scroll}
                 icon={RavenousIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Jammming"
                 scroll={this.props.scroll}
                 icon={JammmingIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Hacker Match"
                 scroll={this.props.scroll}
                 icon={HackerMatchIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Stock Watcher"
                 scroll={this.props.scroll}
                 icon={StockWatchIcon}
@@ -117,6 +129,7 @@ class Drawer extends Component {
             </>
           ) : (
             <DrawerOption
+              closeDrawer={this.props.toggleDrawer}
               name="Projects"
               scroll={this.props.scroll}
               icon={CodeIcon}
@@ -129,16 +142,19 @@ class Drawer extends Component {
           {big ? (
             <>
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="React"
                 scroll={this.props.scroll}
                 icon={ReactIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="Node.js"
                 scroll={this.props.scroll}
                 icon={NodeIcon}
               />
               <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
                 name="MongoDB"
                 scroll={this.props.scroll}
                 icon={MongoIcon}
@@ -146,6 +162,7 @@ class Drawer extends Component {
             </>
           ) : (
             <DrawerOption
+              closeDrawer={this.props.toggleDrawer}
               name="Languages"
               scroll={this.props.scroll}
               icon={ReactIcon}

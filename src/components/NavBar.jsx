@@ -18,8 +18,9 @@ class NavBar extends Component {
     drawer: false,
   };
 
-  toggleDrawer = () => {
-    this.setState(() => ({ drawer: !this.state.drawer }));
+  toggleDrawer = (state) => {
+    if (typeof state !== "undefined") this.setState(() => ({ drawer: state }));
+    else this.setState(() => ({ drawer: !this.state.drawer }));
     console.log(this.state.drawer);
   };
 
@@ -87,8 +88,9 @@ class NavBar extends Component {
           style={{
             zIndex: 1000,
             height: "50px",
+            width: "100%",
             display: "flex",
-            position: "sticky",
+            position: "fixed",
             top: 0,
             textAlign: "center",
             backgroundColor: Theme.palette.primary.main,

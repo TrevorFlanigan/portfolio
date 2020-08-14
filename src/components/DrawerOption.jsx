@@ -7,7 +7,6 @@ export default class DrawerOption extends Component {
       <ListItem
         button
         onClick={() => {
-          console.log(this.props.name.toLowerCase());
           this.props.scroll(this.props.name.toLowerCase());
         }}
       >

@@ -14,6 +14,7 @@ body {
 }
 html {
   overflow-y: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -44,4 +45,9 @@ code {
 .clickable:active {
   transition: color 0.1s;
   color: rgb(142, 80, 102);
+}
+
+.flickity-slider {
+  height: calc(100vh - 50px) !important;
+  min-height: calc(100vh - 50px) !important;
 }

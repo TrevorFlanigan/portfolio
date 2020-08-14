@@ -1,6 +1,6 @@
 .screen {
-  height: 100vh;
-  min-height: 100vh;
+  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
   border: 1px solid black;
 }
 
