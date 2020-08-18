@@ -58,8 +58,9 @@ export default class Slider extends React.Component {
   render() {
     return [
       <div
-        className={"test"}
+        className={"flickitySlide"}
         key="flickityBase"
+        onFocus={this.props.onFocus}
         ref={(node) => (this.flickityNode = node)}
       />,
       this.renderPortal(),

@@ -48,11 +48,13 @@ class Drawer extends Component {
               name="SecureKey"
               scroll={this.props.scroll}
               icon={SecureKeyIcon}
+              // keyID={0}
             />
           ) : (
             <DrawerOption
               closeDrawer={this.props.toggleDrawer}
               name="Work"
+              keyID={1}
               scroll={this.props.scroll}
               icon={WorkIcon}
             />
@@ -87,6 +89,7 @@ class Drawer extends Component {
               closeDrawer={this.props.toggleDrawer}
               name="School"
               scroll={this.props.scroll}
+              keyID={2}
               icon={SchoolIcon}
             />
           )}
@@ -131,6 +134,7 @@ class Drawer extends Component {
             <DrawerOption
               closeDrawer={this.props.toggleDrawer}
               name="Projects"
+              keyID={3}
               scroll={this.props.scroll}
               icon={CodeIcon}
             />
@@ -164,6 +168,7 @@ class Drawer extends Component {
             <DrawerOption
               closeDrawer={this.props.toggleDrawer}
               name="Languages"
+              keyID={4}
               scroll={this.props.scroll}
               icon={ReactIcon}
             />

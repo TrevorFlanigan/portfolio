@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
-class ScreenCollection extends Component {
+import handleViewport from "react-in-viewport";
+
+class ScreenCollectionBlock extends Component {
   render() {
-    const children = React.Children.map(this.props.children, (child, index) => {
-      if (child.type.name !== "Screen") return;
-      const props = { style: { zIndex: index + 1, position: "absolute" } };
-      if (React.isValidElement(child)) {
-        return React.cloneElement(child, props);
-      }
-      return child;
-    });
     return (
       <div
         style={{
@@ -18,12 +12,13 @@ class ScreenCollection extends Component {
         }}
       >
         <Slider
-          ref={this.props.refObj}
+          onFocus={this.props.onFocus}
+          refObj={this.props.refObj}
           options={{
-            wrapAround: true,
+            // wrapAround: true,
             friction: 0.5,
             accessibility: true,
-            pageDots: this.props.children.length,
+            pageDots: false,
             draggable: false,
             prevNextButtons: this.props.children.length,
           }}
@@ -35,4 +30,5 @@ class ScreenCollection extends Component {
   }
 }
 
+const ScreenCollection = handleViewport(ScreenCollectionBlock);
 export default ScreenCollection;

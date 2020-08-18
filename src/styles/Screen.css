@@ -1,7 +1,7 @@
 .screen {
   height: calc(100vh - 50px);
   min-height: calc(100vh - 50px);
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .screen:last-of-type {

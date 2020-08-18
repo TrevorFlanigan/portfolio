@@ -3,9 +3,13 @@ import Screen from "./Screen";
 import "../styles/App.css";
 import NavBar from "./NavBar";
 import { ThemeProvider } from "@material-ui/styles";
-import Theme from "./Theme";
+import LightTheme from "./LightTheme";
 import ScreenCollection from "./ScreenCollection";
-import ReactDom from "react-dom";
+import Home0 from "./homeScreens/Home0";
+import Home1 from "./homeScreens/Home1";
+import Home2 from "./homeScreens/Home2";
+import DarkTheme from "./DarkTheme";
+import Work0 from "./workScreens/Work0";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,8 +20,10 @@ class App extends React.Component {
     this.projectsRef = React.createRef();
     this.languagesRef = React.createRef();
     this.contactRef = React.createRef();
-
+    this.slides = null;
     this.state = {
+      theme: DarkTheme,
+      moving: false,
       refIndex: 0,
       refs: [
         this.homeRef,
@@ -31,8 +37,20 @@ class App extends React.Component {
     };
   }
 
-  focusByID = (id) => {
-    document.getElementById(id).focus();
+  toggleTheme = () => {
+    this.setState(() => ({
+      theme: this.state.theme === DarkTheme ? LightTheme : DarkTheme,
+    }));
+  };
+
+  focusSlide = (index, preventScroll = false) => {
+    if (this.state.moving) return;
+    this.setState(() => ({ moving: true }));
+    this.slides[index].scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      this.slides[index].focus({ preventScroll: preventScroll });
+      this.setState(() => ({ moving: false }));
+    }, 600);
   };
 
   componentDidMount() {
@@ -46,39 +64,47 @@ class App extends React.Component {
       });
     });
 
-    this.focusByID(this.state.ids[0]);
+    this.slides = document.querySelectorAll(".flickitySlide");
+    this.slides.forEach((element, i) =>
+      element.addEventListener("focus", () =>
+        this.setState(() => ({ refIndex: i }))
+      )
+    );
+    this.focusSlide(0, false);
   }
   handleKeyDown = (event) => {
+    if (event.keyCode == 38 || event.keyCode == 40) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (this.state.moving) return;
+
     if (event.keyCode === 38) {
       //up key
-      let nextIndex = this.state.refIndex - 1 > 0 ? this.state.refIndex - 1 : 0;
+      let nextIndex =
+        this.state.refIndex - 1 >= 0 ? this.state.refIndex - 1 : 0;
       this.setState(() => ({
         refIndex: nextIndex,
       }));
-      console.log(this.state.ids);
-      console.log(this.state.ids[nextIndex]);
-      this.focusByID(this.state.ids[nextIndex]);
+      this.focusSlide(nextIndex);
     } else if (event.keyCode === 40) {
       //down key
       let prevIndex =
         this.state.refIndex + 1 < this.state.refs.length
           ? this.state.refIndex + 1
-          : this.state.refs.length - 1;
+          : 0;
       this.setState(() => ({
-        refIndex:
-          this.state.refIndex + 1 < this.state.refs.length
-            ? this.state.refIndex + 1
-            : this.state.refs.length - 1,
+        refIndex: prevIndex,
       }));
-      console.log(this.state.ids);
-      console.log(this.state.ids[prevIndex]);
-      this.focusByID(this.state.ids[prevIndex]);
+      this.focusSlide(prevIndex);
     }
   };
 
   render() {
     const screenStyle = {
       scrollBehavior: "smooth",
+      backgroundColor: this.state.theme.palette.primary.main,
     };
 
     const sectionStyle = {
@@ -87,7 +113,7 @@ class App extends React.Component {
       scrollSnapAlign: "start",
     };
     return (
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={this.state.theme}>
         <div
           className="app container"
           style={{
@@ -106,49 +132,51 @@ class App extends React.Component {
               languages: this.languagesRef,
               contact: this.contactRef,
             }}
+            scroll={this.focusSlide}
+            toggleTheme={this.toggleTheme}
           />
-          <div id="home" style={{ ...sectionStyle, marginBottom: "50px" }}>
+          <div
+            style={{
+              ...sectionStyle,
+              marginBottom: "50px",
+              backgroundColor: this.state.theme.palette.primary,
+            }}
+          >
             <ScreenCollection ignoreNav refObj={this.state.refs[0]}>
               <Screen
-                style={{ ...screenStyle, backgroundColor: "red" }}
-                id="home"
+                screenStyle={{
+                  ...screenStyle,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: this.state.theme.palette.primary.main,
+                }}
               >
-                home0
+                <Home0 />
               </Screen>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "green" }}
-                id="home"
+                screenStyle={{
+                  display: "flex",
+                  alignItems: "center",
+                  ...screenStyle,
+                  backgroundColor: this.state.theme.palette.primary.main,
+                }}
               >
-                home1
+                <Home1 />
               </Screen>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "blue" }}
-                id="home"
+                screenStyle={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  ...screenStyle,
+                  backgroundColor: this.state.theme.palette.primary.main,
+                }}
               >
-                home2
-              </Screen>
-              <Screen
-                refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "grey" }}
-                id="home"
-              >
-                home3
-              </Screen>
-              <Screen
-                refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "beige" }}
-                id="home"
-              >
-                home4
-              </Screen>
-              <Screen
-                refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "yellow" }}
-                id="home"
-              >
-                home5
+                <Home2 onClick={() => this.focusSlide(1, false)} />
               </Screen>
             </ScreenCollection>
           </div>
@@ -156,29 +184,32 @@ class App extends React.Component {
             <ScreenCollection refObj={this.state.refs[1]}>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "green" }}
-                id="home"
+                screenStyle={{
+                  ...screenStyle,
+                  backgroundColor: this.state.theme.palette.primary.main,
+                }}
+                id="work0"
               >
-                SecureKey
+                <Work0 />
               </Screen>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "blue" }}
-                id="home"
+                screenStyle={{ ...screenStyle }}
+                id="work1"
               >
                 Looking to hire?
               </Screen>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "grey" }}
-                id="home"
+                screenStyle={{ ...screenStyle, backgroundColor: "grey" }}
+                id="work2"
               >
                 Hire me
               </Screen>
               <Screen
                 refProp={this.homeRef}
-                style={{ ...screenStyle, backgroundColor: "beige" }}
-                id="home"
+                screenStyle={{ ...screenStyle, backgroundColor: "beige" }}
+                id="work3"
               >
                 Please
               </Screen>
@@ -186,25 +217,39 @@ class App extends React.Component {
           </div>
           <div id="school" style={sectionStyle} ref={this.schoolRef}>
             <ScreenCollection refObj={this.state.refs[2]}>
-              <Screen id="school">school</Screen>
-              <Screen id="school">school2</Screen>
+              <Screen screenStyle={{ ...screenStyle }} id="school">
+                school
+              </Screen>
+              <Screen id="school" screenStyle={{ ...screenStyle }}>
+                school2
+              </Screen>
             </ScreenCollection>
           </div>
           <div ref={this.projectsRef} id="projects" style={sectionStyle}>
             <ScreenCollection refObj={this.state.refs[3]}>
-              <Screen id="projects">projects</Screen>
-              <Screen id="projects">projects</Screen>
+              <Screen id="projects" screenStyle={{ ...screenStyle }}>
+                projects
+              </Screen>
+              <Screen id="projects" screenStyle={{ ...screenStyle }}>
+                projects
+              </Screen>
             </ScreenCollection>
           </div>
           <div ref={this.languagesRef} id="languages" style={sectionStyle}>
             <ScreenCollection refObj={this.state.refs[4]}>
-              <Screen id="languages">languages</Screen>
-              <Screen id="languages">languages</Screen>
+              <Screen id="languages" screenStyle={{ ...screenStyle }}>
+                languages
+              </Screen>
+              <Screen id="languages" screenStyle={{ ...screenStyle }}>
+                languages
+              </Screen>
             </ScreenCollection>
           </div>
           <div ref={this.contactRef} id="contact" style={sectionStyle}>
             <ScreenCollection refObj={this.state.refs[5]}>
-              <Screen id="contact">contact me</Screen>
+              <Screen id="contact" screenStyle={{ ...screenStyle }}>
+                contact me
+              </Screen>
             </ScreenCollection>
           </div>
         </div>

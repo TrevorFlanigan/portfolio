@@ -1,25 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import "../styles/Screen.css";
-import { ThemeProvider } from "@material-ui/styles";
-import Theme from "./Theme";
-
-export default class Screen extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={Theme}>
-        <div
-          ref={this.props.refProp}
-          style={{
-            ...this.props.style,
-            // position: "absolute",
-            zIndex: this.props.index,
-            width: "100vw",
-          }}
-          className="screen container"
-        >
-          {this.props.children}
-        </div>
-      </ThemeProvider>
-    );
-  }
-}
+import { useEffect } from "react";
+import { useTheme } from "@material-ui/core";
+let Screen = (props) => {
+  let theme = useTheme();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <>
+      <div
+        id={props.id}
+        ref={props.refProp}
+        style={{
+          ...props.screenStyle,
+          width: "100vw",
+        }}
+        className="screen container"
+      >
+        {props.children}
+      </div>
+    </>
+  );
+};
+export default Screen;

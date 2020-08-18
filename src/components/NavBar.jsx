@@ -1,44 +1,36 @@
 import React, { Component } from "react";
 import "../styles/NavBar.css";
-import {
-  ThemeProvider,
-  createStyles,
-  withStyles,
-  IconButton,
-} from "@material-ui/core";
-import Theme from "./Theme";
+import { withStyles, IconButton, withTheme, Switch } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import MenuIcon from "@material-ui/icons/Menu";
 import Radium from "radium";
 import Drawer from "./Drawer";
-
 class NavBar extends Component {
   state = {
     drawer: false,
+    theme: true,
   };
 
   toggleDrawer = (state) => {
     if (typeof state !== "undefined") this.setState(() => ({ drawer: state }));
     else this.setState(() => ({ drawer: !this.state.drawer }));
-    console.log(this.state.drawer);
   };
 
-  scroll = (id) => {
-    let elem = document.getElementById(id);
-    if (!elem) return;
-    elem.scrollIntoView({
-      behavior: "smooth",
-    });
+  handleChange = (event) => {
+    this.setState({ ...this.state, [event.target.name]: event.target.checked });
+    this.props.toggleTheme();
   };
   render() {
+    const { theme } = this.props;
+
     const navIconSection = {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: "2px",
-      paddingLeft: Theme.spacing(1),
-      paddingRight: Theme.spacing(1),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
       whiteSpace: "nowrap",
     };
 
@@ -47,8 +39,8 @@ class NavBar extends Component {
       justifyContent: "center",
       alignItems: "center",
       borderRadius: "2px",
-      paddingLeft: Theme.spacing(1),
-      paddingRight: Theme.spacing(1),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
       whiteSpace: "nowrap",
     };
 
@@ -66,22 +58,41 @@ class NavBar extends Component {
 
     const smallNavInfoSection = {
       display: "flex",
-      paddingLeft: Theme.spacing(1),
-      paddingRight: Theme.spacing(1),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
     };
 
     const navLiElement = {
-      padding: Theme.spacing(1),
+      padding: theme.spacing(1),
     };
-
-    const classes = this.props.classes;
     let fade = isWidthUp("md", this.props.width) ? "fadein" : "fadeout";
+    const ThemedTypography = withStyles({
+      root: {
+        cursor: "pointer",
+        color: theme.palette.primary.contrastText,
+        "&:hover": {
+          color: theme.palette.primary.light,
+        },
+        transition: "color 0.1s",
+      },
+    })(Typography);
+    const StyledIconButton = withStyles({
+      root: {
+        order: 2,
+        color: theme.palette.primary.contrastText,
+        "&:hover": {
+          color: theme.palette.primary.light,
+          transition: "color .3s",
+        },
+      },
+    })(IconButton);
+
     return (
-      <ThemeProvider theme={Theme}>
+      <>
         <Drawer
           drawer={this.state.drawer}
           toggleDrawer={this.toggleDrawer}
-          scroll={this.scroll}
+          scroll={this.props.scroll}
         />
 
         <nav
@@ -93,17 +104,17 @@ class NavBar extends Component {
             position: "fixed",
             top: 0,
             textAlign: "center",
-            backgroundColor: Theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main,
           }}
         >
           <div
-            style={navIconSection}
-            className="unselectable clickable"
+            style={{ ...navIconSection }}
+            className="unselectable"
             onClick={() => {
-              this.scroll("home");
+              this.props.scroll(0);
             }}
           >
-            <Typography variant="h6">Trevor Flanigan</Typography>
+            <ThemedTypography variant="h6">Trevor Flanigan</ThemedTypography>
           </div>
           <ol style={navMenuSection} className="mdonly">
             <li
@@ -111,50 +122,44 @@ class NavBar extends Component {
               style={navLiElement}
               key={0}
               onClick={() => {
-                this.scroll("work");
+                this.props.scroll(1);
               }}
             >
               {" "}
-              <Typography className={classes.NavItem} variant="subtitle1">
-                Work
-              </Typography>
+              <ThemedTypography variant="subtitle1">Work</ThemedTypography>
             </li>
             <li
               className={`${fade} unselectable clickable`}
               style={navLiElement}
               key={1}
               onClick={() => {
-                this.scroll("school");
+                this.props.scroll(2);
               }}
             >
-              <Typography className={classes.NavItem} variant="subtitle1">
-                School
-              </Typography>
+              <ThemedTypography variant="subtitle1">School</ThemedTypography>
             </li>
             <li
               className={`${fade} unselectable clickable`}
               style={navLiElement}
               key={2}
               onClick={() => {
-                this.scroll("projects");
+                this.props.scroll(3);
               }}
             >
               {" "}
-              <Typography className={classes.NavItem} variant="subtitle1">
-                Projects
-              </Typography>
+              <ThemedTypography variant="subtitle1">Projects</ThemedTypography>
             </li>
             <li
               className={`${fade} unselectable clickable`}
               style={navLiElement}
               key={3}
               onClick={() => {
-                this.scroll("languages");
+                this.props.scroll(4);
               }}
             >
-              <Typography className={classes.NavItem} variant="subtitle1">
+              <ThemedTypography variant="subtitle1">
                 Languages and Frameworks
-              </Typography>
+              </ThemedTypography>
             </li>
           </ol>
           <div style={smallNavInfoSection}>
@@ -162,34 +167,34 @@ class NavBar extends Component {
               className={`${fade} unselectable clickable`}
               style={contact}
               key={5}
-              onClick={() => {
-                this.scroll("contact");
-              }}
             >
-              <Typography className={classes.NavItem} variant="subtitle1">
+              <Switch
+                onChange={this.handleChange}
+                checked={this.state.theme}
+                name="theme"
+                color="default"
+                inputProps={{ "aria-label": "secondary checkbox" }}
+              />
+
+              <ThemedTypography
+                variant="subtitle1"
+                onClick={() => {
+                  this.props.scroll(5);
+                }}
+              >
                 Contact
-              </Typography>
+              </ThemedTypography>
             </div>
-            <Typography className={classes.NavItem} variant="subtitle1">
-              <IconButton className={classes.icon} onClick={this.toggleDrawer}>
+            <ThemedTypography variant="subtitle1">
+              <StyledIconButton onClick={this.toggleDrawer}>
                 <MenuIcon />
-              </IconButton>
-            </Typography>
+              </StyledIconButton>
+            </ThemedTypography>
           </div>
         </nav>
-      </ThemeProvider>
+      </>
     );
   }
 }
 
-const muiStyles = createStyles({
-  icon: {
-    order: 2,
-    "&:hover": {
-      color: "white",
-      transition: "color .3s",
-    },
-  },
-});
-
-export default withWidth()(withStyles(muiStyles)(Radium(NavBar)));
+export default withWidth()(withTheme(Radium(NavBar)));

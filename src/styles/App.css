@@ -34,7 +34,7 @@
 
 /* position dots in carousel */
 .flickity-page-dots {
-  bottom: 55px !important;
+  bottom: 40px !important;
   z-index: 999;
 }
 /* white circles */
