@@ -1,5 +1,6 @@
 {
   "name": "portfolio",
+  "homepage": "https://trevorflanigan.tech/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "flickity": "^2.2.1",
+    "flickity-hash": "^1.0.3",
     "indefinite": "^2.3.2",
     "radium": "^0.26.0",
     "react": "^16.13.1",

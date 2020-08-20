@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { withTheme, withWidth, isWidthUp } from "@material-ui/core";
 import handleViewport from "react-in-viewport";
-import getStyle from "../GetStyle";
-import a from "indefinite";
-class Work0 extends Component {
+import getStyle from "./GetStyle";
+class ContentScreen extends Component {
   state = {
     loaded: "",
   };
@@ -24,19 +23,22 @@ class Work0 extends Component {
           inViewport,
           enterCount,
           {
-            fontSize: big ? "8em" : small ? "6em" : "3em",
+            fontSize: big
+              ? this.props.bigFont || "6em"
+              : small
+              ? this.props.mediumFont || "4em"
+              : this.props.smallFont || "3em",
             ...staticStyle,
           },
-          "slideleft fadein rotate"
+          this.props.transition
         )}
       >
-        I am {a(process.env.REACT_APP_JOB_TITLE) + " "} at
-        {" " + process.env.REACT_APP_COMPANY}
+        {this.props.children}
       </h1>
     );
   }
 }
 
 export default withTheme(
-  withWidth()(handleViewport(Work0), { rootMargin: "-1px" })
+  withWidth()(handleViewport(ContentScreen), { rootMargin: "-1px" })
 );

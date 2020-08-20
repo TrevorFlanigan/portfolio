@@ -15,6 +15,7 @@ class Home2 extends Component {
     if (inViewport && enterCount === 1 && !this.state.loaded) {
       this.setState({ loaded: true });
       setTimeout(() => {
+        this.props.intro();
         this.setState(() => ({ showArrow: true }));
       }, 1000);
     }
@@ -38,7 +39,11 @@ class Home2 extends Component {
     })(ExpandMore);
     const { inViewport, enterCount } = this.props;
     this.checkLoaded();
-    const staticStyle = { transition: "font-size 1s", textAlign: "center" };
+    const staticStyle = {
+      transition: "font-size 1s, background-color 2s, color 2s",
+      color: theme.palette.primary.contrastText,
+      textAlign: "center",
+    };
     let big = isWidthUp("md", this.props.width);
     let small = isWidthUp("sm", this.props.width);
     return (
@@ -51,7 +56,6 @@ class Home2 extends Component {
             {
               fontSize: big ? "9em" : small ? "6em" : "4em",
               ...staticStyle,
-              color: theme.palette.primary.contrastText,
             },
             "slideright slidedown fadein"
           )}

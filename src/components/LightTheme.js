@@ -38,6 +38,16 @@ let LightTheme = createMuiTheme({
   themeName,
   typography,
   breakpoints,
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        backgroundColor: "transparent",
+      },
+      paperAnchorRight: {
+        backgroundColor: "transparent",
+      },
+    },
+  },
 });
 LightTheme = responsiveFontSizes(LightTheme);
 

@@ -39,6 +39,36 @@ let DarkTheme = createMuiTheme({
   themeName,
   typography,
   breakpoints,
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        backgroundColor: "transparent",
+      },
+      paperAnchorRight: {
+        backgroundColor: "transparent",
+      },
+    },
+    MuiListSubheader: {
+      root: {
+        color: palette.primary.main,
+      },
+    },
+    MuiList: {
+      root: {
+        transition: "visibility 10s",
+      },
+    },
+    MuiListItem: {
+      root: {
+        transition: "visiblility 10s",
+      },
+    },
+    MuiCollapse: {
+      container: {
+        transition: "all 10s",
+      },
+    },
+  },
 });
 DarkTheme = responsiveFontSizes(DarkTheme);
 

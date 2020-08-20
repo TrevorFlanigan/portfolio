@@ -106,6 +106,14 @@ var getDefaultStyle = (
     updateStyle(afterStyle, "transition", "opacity 0.4s 0.25s ease-out");
   }
 
+  if (animationName.toLowerCase().includes("rotate")) {
+    /* BEFORE STYLE */
+    updateStyle(beforeStyle, "transform", "rotateZ(-5deg)");
+    /* AFTER STYLE */
+    updateStyle(afterStyle, "transform", "rotateZ(0deg)");
+    updateStyle(afterStyle, "transition", "transform 0.4s 0.25s ease-out");
+  }
+
   return getStyle(inViewport, enterCount, staticStyle, afterStyle, beforeStyle);
 };
 

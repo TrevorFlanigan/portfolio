@@ -73,7 +73,7 @@ class NavBar extends Component {
         "&:hover": {
           color: theme.palette.primary.light,
         },
-        transition: "color 0.1s",
+        transition: "color .1s",
       },
     })(Typography);
     const StyledIconButton = withStyles({
@@ -82,8 +82,8 @@ class NavBar extends Component {
         color: theme.palette.primary.contrastText,
         "&:hover": {
           color: theme.palette.primary.light,
-          transition: "color .3s",
         },
+        transition: "color .1s",
       },
     })(IconButton);
 
@@ -93,6 +93,7 @@ class NavBar extends Component {
           drawer={this.state.drawer}
           toggleDrawer={this.toggleDrawer}
           scroll={this.props.scroll}
+          intro={this.props.intro}
         />
 
         <nav
@@ -105,12 +106,14 @@ class NavBar extends Component {
             top: 0,
             textAlign: "center",
             backgroundColor: theme.palette.primary.main,
+            transition: "background-color 2s, color 2s",
           }}
         >
           <div
             style={{ ...navIconSection }}
             className="unselectable"
             onClick={() => {
+              this.props.intro();
               this.props.scroll(0);
             }}
           >
@@ -122,6 +125,7 @@ class NavBar extends Component {
               style={navLiElement}
               key={0}
               onClick={() => {
+                this.props.intro();
                 this.props.scroll(1);
               }}
             >
@@ -133,6 +137,7 @@ class NavBar extends Component {
               style={navLiElement}
               key={1}
               onClick={() => {
+                this.props.intro();
                 this.props.scroll(2);
               }}
             >
@@ -143,6 +148,7 @@ class NavBar extends Component {
               style={navLiElement}
               key={2}
               onClick={() => {
+                this.props.intro();
                 this.props.scroll(3);
               }}
             >
@@ -154,6 +160,7 @@ class NavBar extends Component {
               style={navLiElement}
               key={3}
               onClick={() => {
+                this.props.intro();
                 this.props.scroll(4);
               }}
             >
@@ -179,6 +186,7 @@ class NavBar extends Component {
               <ThemedTypography
                 variant="subtitle1"
                 onClick={() => {
+                  this.props.intro();
                   this.props.scroll(5);
                 }}
               >

@@ -9,7 +9,11 @@ class Home0 extends Component {
 
   render() {
     const { inViewport, enterCount, theme } = this.props;
-    const staticStyle = { transition: "font-size 1s", textAlign: "center" };
+    const staticStyle = {
+      transition: "font-size 1s, background-color 2s, color 2s",
+      textAlign: "center",
+      color: theme.palette.primary.contrastText,
+    };
     let big = isWidthUp("md", this.props.width);
     let small = isWidthUp("sm", this.props.width);
     return (
@@ -21,7 +25,6 @@ class Home0 extends Component {
           {
             fontSize: big ? "18em" : small ? "10em" : "4em",
             ...staticStyle,
-            color: theme.palette.primary.contrastText,
           },
           "slideup slideleft fadein"
         )}

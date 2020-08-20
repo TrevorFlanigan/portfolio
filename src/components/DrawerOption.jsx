@@ -3,7 +3,20 @@ import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 
 export default class DrawerOption extends Component {
   render() {
-    return (
+    return this.props.scrollToFlickity ? (
+      <a
+        href={this.props.keyID}
+        style={{ color: "inherit", textDecoration: "none" }}
+        onClick={this.props.intro}
+      >
+        <ListItem button>
+          <ListItemIcon>
+            <this.props.icon />
+          </ListItemIcon>
+          <ListItemText primary={this.props.name} />
+        </ListItem>
+      </a>
+    ) : (
       <ListItem
         button
         onClick={() => {

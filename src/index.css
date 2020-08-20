@@ -36,18 +36,38 @@ code {
   user-select: none;
 }
 
-/* .clickable:hover {
-  cursor: pointer;
-  color: white;
-  transition: color 0.1s;
-}
-
-.clickable:active {
-  transition: color 0.1s;
-  color: rgb(142, 80, 102);
-} */
-
 .flickity-slider {
   height: calc(100vh - 50px) !important;
   min-height: calc(100vh - 50px) !important;
+}
+
+.flickity-button {
+  background: none !important;
+}
+
+.flickity-prev-next-button {
+  width: 100px !important;
+  height: 100vh !important;
+  z-index: 999 !important;
+  transition: color 0.1s !important;
+}
+
+.flickity-prev-next-button.next {
+  padding-right: 0;
+  /* right: 0 !important; */
+}
+
+.flickity-prev-next-button.previous {
+  padding-left: 0;
+}
+
+.flickity-prev-next-button:hover {
+  width: 100px;
+  background: none !important;
+  color: #ff3333;
+  mix-blend-mode: none !important;
+}
+
+.flickity-button:disabled {
+  display: none;
 }

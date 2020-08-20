@@ -5,6 +5,9 @@ import {
   List,
   ListSubheader,
   Collapse,
+  withTheme,
+  withStyles,
+  makeStyles,
 } from "@material-ui/core";
 import WorkIcon from "@material-ui/icons/Work";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
@@ -29,6 +32,34 @@ const {
 class Drawer extends Component {
   render() {
     let big = isWidthUp("md", this.props.width);
+    const { theme } = this.props;
+    let StyledList = withStyles({
+      root: {
+        backgroundColor: "transparent",
+        color: theme.palette.primary.contrastText,
+      },
+    })(List);
+    let StyledListSubheader = withStyles({
+      root: {
+        color: theme.palette.primary.contrastText,
+      },
+    })(ListSubheader);
+    let StyledWorkIcon = withStyles({
+      root: {
+        color: theme.palette.primary.contrastText,
+      },
+    })(WorkIcon);
+    let StyledSchoolIcon = withStyles({
+      root: {
+        color: theme.palette.primary.contrastText,
+      },
+    })(SchoolIcon);
+
+    let StyledCodeIcon = withStyles({
+      root: {
+        color: theme.palette.primary.contrastText,
+      },
+    })(CodeIcon);
 
     return (
       <SwipeableDrawer
@@ -37,18 +68,20 @@ class Drawer extends Component {
         onClose={() => this.props.toggleDrawer(false)}
         onOpen={this.props.toggleDrawer}
       >
-        <List>
+        <StyledList>
           <Collapse in={big}>
-            <ListSubheader disableSticky={false}>Work</ListSubheader>
+            <StyledListSubheader disableSticky={false}>
+              Work
+            </StyledListSubheader>
           </Collapse>
 
           {big ? (
             <DrawerOption
               closeDrawer={this.props.toggleDrawer}
               name="SecureKey"
-              scroll={this.props.scroll}
+              scrollToFlickity
               icon={SecureKeyIcon}
-              // keyID={0}
+              keyID={"#work0"}
             />
           ) : (
             <DrawerOption
@@ -56,11 +89,12 @@ class Drawer extends Component {
               name="Work"
               keyID={1}
               scroll={this.props.scroll}
-              icon={WorkIcon}
+              icon={StyledWorkIcon}
+              color={theme.palette.primary.contrastText}
             />
           )}
           <Collapse in={big}>
-            <ListSubheader>School</ListSubheader>
+            <StyledListSubheader>School</StyledListSubheader>
           </Collapse>
 
           {big ? (
@@ -68,18 +102,24 @@ class Drawer extends Component {
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Launchpad"
+                scrollToFlickity
+                keyID={"#school1"}
                 scroll={this.props.scroll}
                 icon={LaunchpadIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Meetable"
+                scrollToFlickity
+                keyID={"#school2"}
                 scroll={this.props.scroll}
                 icon={MeetableIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Courses"
+                scrollToFlickity
+                keyID={"#school3"}
                 scroll={this.props.scroll}
                 icon={UBCIcon}
               />
@@ -90,11 +130,11 @@ class Drawer extends Component {
               name="School"
               scroll={this.props.scroll}
               keyID={2}
-              icon={SchoolIcon}
+              icon={StyledSchoolIcon}
             />
           )}
           <Collapse in={big}>
-            <ListSubheader>Projects</ListSubheader>
+            <StyledListSubheader>Projects</StyledListSubheader>
           </Collapse>
 
           {big ? (
@@ -102,30 +142,40 @@ class Drawer extends Component {
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Sync"
+                scrollToFlickity
+                keyID={"#projects0"}
                 scroll={this.props.scroll}
                 icon={SyncIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Ravenous"
+                scrollToFlickity
+                keyID={"#projects1"}
                 scroll={this.props.scroll}
                 icon={RavenousIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Jammming"
+                scrollToFlickity
+                keyID={"#projects2"}
                 scroll={this.props.scroll}
                 icon={JammmingIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Hacker Match"
+                scrollToFlickity
+                keyID={"#projects3"}
                 scroll={this.props.scroll}
                 icon={HackerMatchIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Stock Watcher"
+                scrollToFlickity
+                keyID={"#projects4"}
                 scroll={this.props.scroll}
                 icon={StockWatchIcon}
               />
@@ -136,11 +186,11 @@ class Drawer extends Component {
               name="Projects"
               keyID={3}
               scroll={this.props.scroll}
-              icon={CodeIcon}
+              icon={StyledCodeIcon}
             />
           )}
           <Collapse in={big}>
-            <ListSubheader>Languages and Frameworks</ListSubheader>
+            <StyledListSubheader>Languages and Frameworks</StyledListSubheader>
           </Collapse>
 
           {big ? (
@@ -148,18 +198,24 @@ class Drawer extends Component {
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="React"
+                scrollToFlickity
+                keyID={"#languages0"}
                 scroll={this.props.scroll}
                 icon={ReactIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Node.js"
+                scrollToFlickity
+                keyID={"#languages1"}
                 scroll={this.props.scroll}
                 icon={NodeIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="MongoDB"
+                scrollToFlickity
+                keyID={"#languages2"}
                 scroll={this.props.scroll}
                 icon={MongoIcon}
               />
@@ -173,10 +229,10 @@ class Drawer extends Component {
               icon={ReactIcon}
             />
           )}
-        </List>
+        </StyledList>
       </SwipeableDrawer>
     );
   }
 }
 
-export default withWidth()(Drawer);
+export default withTheme(withWidth()(Drawer));

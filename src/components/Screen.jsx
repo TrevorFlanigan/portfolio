@@ -1,9 +1,7 @@
 import React from "react";
 import "../styles/Screen.css";
 import { useEffect } from "react";
-import { useTheme } from "@material-ui/core";
 let Screen = (props) => {
-  let theme = useTheme();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
