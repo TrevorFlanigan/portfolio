@@ -101,9 +101,17 @@ class Drawer extends Component {
             <>
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
-                name="Launchpad"
+                name="Cool Projects"
                 scrollToFlickity
                 keyID={"#school1"}
+                scroll={this.props.scroll}
+                icon={UBCIcon}
+              />
+              <DrawerOption
+                closeDrawer={this.props.toggleDrawer}
+                name="Launchpad"
+                scrollToFlickity
+                keyID={"#school2"}
                 scroll={this.props.scroll}
                 icon={LaunchpadIcon}
               />
@@ -111,17 +119,9 @@ class Drawer extends Component {
                 closeDrawer={this.props.toggleDrawer}
                 name="Meetable"
                 scrollToFlickity
-                keyID={"#school2"}
-                scroll={this.props.scroll}
-                icon={MeetableIcon}
-              />
-              <DrawerOption
-                closeDrawer={this.props.toggleDrawer}
-                name="Courses"
-                scrollToFlickity
                 keyID={"#school3"}
                 scroll={this.props.scroll}
-                icon={UBCIcon}
+                icon={MeetableIcon}
               />
             </>
           ) : (

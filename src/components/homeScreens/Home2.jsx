@@ -70,6 +70,9 @@ class Home2 extends Component {
               : "translateY(-1em)",
             opacity: this.state.showArrow ? 1 : 0,
             transition: "opacity 1s, transform 1s",
+            position: "absolute",
+            bottom: "10px",
+            justifySelf: "center",
           }}
         >
           <StyledIconButton onClick={this.props.onClick}>

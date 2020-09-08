@@ -33,7 +33,7 @@ const breakpoints = {
   },
 };
 
-const themeName = "Charm Wild Blue Yonder Giraffe";
+const themeName = "Dark Theme";
 let DarkTheme = createMuiTheme({
   palette,
   themeName,

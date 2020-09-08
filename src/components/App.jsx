@@ -10,7 +10,12 @@ import Home1 from "./homeScreens/Home1";
 import Home2 from "./homeScreens/Home2";
 import DarkTheme from "./DarkTheme";
 import Work0 from "./workScreens/Work0";
+import Work1 from "./workScreens/Work1";
+import Work2 from "./workScreens/Work2";
+
 import ContentScreen from "./ContentScreen";
+import School0 from "./schoolScreens/School0";
+import Courses from "./schoolScreens/Courses";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -71,6 +76,7 @@ class App extends React.Component {
 
   // call this to Disable
   disableScroll = () => {
+    console.log("disable");
     window.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
     window.addEventListener(
       this.wheelEvent,
@@ -83,6 +89,7 @@ class App extends React.Component {
 
   // call this to Enable
   enableScroll = () => {
+    console.log("enable");
     window.removeEventListener("DOMMouseScroll", this.preventDefault, false);
     window.removeEventListener(
       this.wheelEvent,
@@ -117,16 +124,18 @@ class App extends React.Component {
   };
 
   focusSlide = (index) => {
+    console.log(index);
     if (this.state.currOnScreen === this.state.ids[index]) return false;
     if (this.state.moving) return false;
-    this.disableScroll();
     this.setState(() => ({
       moving: true,
       movingID: this.state.ids[index],
     }));
+    console.log(this.state.ids[index]);
     document
       .getElementById(this.state.ids[index])
       .scrollIntoView({ behavior: "smooth" });
+    this.disableScroll();
   };
 
   componentDidMount() {
@@ -279,6 +288,7 @@ class App extends React.Component {
                   display: "flex",
                   justifyContent: "space-between",
                   flexDirection: "column",
+                  alignItems: "center",
                   ...screenStyle,
                 }}
               >
@@ -313,18 +323,16 @@ class App extends React.Component {
                     screenStyle={{ ...screenStyle }}
                     id="work1"
                   >
-                    <ContentScreen transition="slideright rotate fadein">
-                      Work1
-                    </ContentScreen>
+                    {/* <ContentScreen transition="slideright rotate fadein"> */}
+                    <Work1 />
+                    {/* </ContentScreen> */}
                   </Screen>
                   <Screen
                     refProp={this.homeRef}
                     screenStyle={{ ...screenStyle }}
                     id="work2"
                   >
-                    <ContentScreen transition="slideright rotate fadein">
-                      Work2
-                    </ContentScreen>
+                    <Work2 />
                   </Screen>
                 </ScreenCollection>
               </div>
@@ -335,23 +343,19 @@ class App extends React.Component {
                   entered={this.enteredCallback}
                 >
                   <Screen screenStyle={{ ...screenStyle }} id="school0">
-                    <ContentScreen transition="slideright rotate fadein">
-                      School
-                    </ContentScreen>
+                    <School0 />
                   </Screen>
                   <Screen screenStyle={{ ...screenStyle }} id="school1">
+                    <Courses />
+                  </Screen>
+                  <Screen screenStyle={{ ...screenStyle }} id="school2">
                     <ContentScreen transition="slideright rotate fadein">
                       Launchpad
                     </ContentScreen>
                   </Screen>
-                  <Screen screenStyle={{ ...screenStyle }} id="school2">
-                    <ContentScreen transition="slideright rotate fadein">
-                      Meetable
-                    </ContentScreen>
-                  </Screen>
                   <Screen screenStyle={{ ...screenStyle }} id="school3">
                     <ContentScreen transition="slideright rotate fadein">
-                      Courses
+                      Meetable
                     </ContentScreen>
                   </Screen>
                 </ScreenCollection>

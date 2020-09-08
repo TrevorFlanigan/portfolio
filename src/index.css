@@ -71,3 +71,14 @@ code {
 .flickity-button:disabled {
   display: none;
 }
+
+.hoverbrightness {
+  transition: filter 0.3s;
+}
+.hoverbrightness:hover {
+  filter: brightness(85%);
+}
+
+.screen:not(.is-selected) {
+  display: "none";
+}

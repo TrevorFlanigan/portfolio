@@ -1,8 +1,21 @@
 import React, { Component } from "react";
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  withStyles,
+} from "@material-ui/core";
 
 export default class DrawerOption extends Component {
   render() {
+    const StyledListItem = withStyles({
+      root: {
+        transition: "color .3s",
+        "&:hover": {
+          color: "#ff3333",
+        },
+      },
+    })(ListItem);
     return this.props.scrollToFlickity ? (
       <a
         href={this.props.keyID}
@@ -17,7 +30,7 @@ export default class DrawerOption extends Component {
         </ListItem>
       </a>
     ) : (
-      <ListItem
+      <StyledListItem
         button
         onClick={() => {
           this.props.scroll(this.props.keyID);
@@ -27,7 +40,7 @@ export default class DrawerOption extends Component {
           <this.props.icon />
         </ListItemIcon>
         <ListItemText primary={this.props.name} />
-      </ListItem>
+      </StyledListItem>
     );
   }
 }

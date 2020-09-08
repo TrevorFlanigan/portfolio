@@ -24,7 +24,7 @@ class Work0 extends Component {
           inViewport,
           enterCount,
           {
-            fontSize: big ? "8em" : small ? "6em" : "3em",
+            fontSize: big ? "15vmin" : small ? "4em" : "3em",
             ...staticStyle,
           },
           "slideleft fadein rotate"
