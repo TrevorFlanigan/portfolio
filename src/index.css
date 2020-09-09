@@ -82,3 +82,10 @@ code {
 .screen:not(.is-selected) {
   display: "none";
 }
+
+.rotatingrect {
+  /* width: 100%;
+  height: 100%; */
+  position: absolute;
+  transform-style: preserve-3d;
+}

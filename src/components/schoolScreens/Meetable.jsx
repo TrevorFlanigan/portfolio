@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { withTheme, withWidth, isWidthUp, Tooltip } from "@material-ui/core";
 import handleViewport from "react-in-viewport";
 import getStyle from "../GetStyle";
-import rocket from "../../assets/rocket.png";
-class Launchpad extends Component {
+import meetableLogo from "../../assets/meetableLogo.svg";
+class Meetable extends Component {
   state = {
     loaded: "",
   };
@@ -37,7 +37,7 @@ class Launchpad extends Component {
             "slideup slideleft fadein"
           )}
         >
-          I'm a developer for UBC Launchpad!
+          I'm a co-founder of Meetable!
         </h1>
         <p
           style={getStyle(
@@ -50,22 +50,27 @@ class Launchpad extends Component {
             "slidedown slideright fadein"
           )}
         >
-          Launchpad is a UBC Software Engineering Design Team
+          Meetable is a student startup designed to connect students despite
+          COVID-19's impacts
           <br />
-          We meet weekly and follow Agile project management principles. It's a
-          great space to take risks and try to build something fascinating
-          together!
+          We started building the project in August 2020, and had an MVP
+          prepared by September 2020.
         </p>
         <div
           style={{ margin: "10px", justifyContent: "center", display: "flex" }}
         >
           <Tooltip title="Check it out!">
             <a
-              href="https://www.ubclaunchpad.com"
+              href="https://www.gomeetable.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="hoverbrightness" src={rocket} alt="logo" />
+              <img
+                height="100%"
+                className="hoverbrightness"
+                src={meetableLogo}
+                alt="logo"
+              />
             </a>
           </Tooltip>
         </div>
@@ -75,5 +80,5 @@ class Launchpad extends Component {
 }
 
 export default withTheme(
-  withWidth()(handleViewport(Launchpad), { rootMargin: "-1px" })
+  withWidth()(handleViewport(Meetable), { rootMargin: "-1px" })
 );

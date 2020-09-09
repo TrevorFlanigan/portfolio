@@ -21,21 +21,26 @@ class Work2 extends Component {
       marginBottom: "20px",
     };
     return (
-      <div
-        className={`fullheight fullwidth unselectable`}
-        style={getStyle(
-          inViewport,
-          enterCount,
-          {
-            fontSize: big ? "8em" : small ? "4em" : "3em",
-            ...staticStyle,
-          },
-          "slidedown fadein"
-        )}
-      >
-        <p style={{ margin: 0 }}>Achievements</p>
+      <>
+        <div
+          className={`fullheight fullwidth unselectable`}
+          style={getStyle(
+            inViewport,
+            enterCount,
+            {
+              fontSize: big ? "8em" : small ? "4em" : "2em",
+              ...staticStyle,
+            },
+            "slidedown fadein"
+          )}
+        >
+          <p style={{ margin: 0 }}>Achievements</p>
+        </div>
+
         <ul
           style={{
+            ...staticStyle,
+            paddingLeft: "0",
             flexGrow: 1,
             display: "flex",
             fontSize: "clamp(1rem, 4vw, 2rem)",
@@ -43,7 +48,9 @@ class Work2 extends Component {
             transition: "font-size .1s",
             flexDirection: "column",
             justifyContent: "space-evenly",
+            height: "100%",
           }}
+          className="unselectable"
         >
           <li style={listStyle}>
             Engineered{" "}
@@ -70,7 +77,8 @@ class Work2 extends Component {
             </span>
           </li>
           <li style={listStyle}>
-            Presented to CTO and Board and recieved{" "}
+            Presented application demonstration to CTO and board which resulted
+            in{" "}
             <span
               style={{
                 color: "orange",
@@ -78,8 +86,9 @@ class Work2 extends Component {
                   "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
               }}
             >
-              extremely positive feedback
-            </span>
+              increased focus and resource allocation{" "}
+            </span>{" "}
+            to this initiative
           </li>
           <li style={listStyle}>
             Recieved COOP{" "}
@@ -102,12 +111,12 @@ class Work2 extends Component {
                   "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
               }}
             >
-              AGILE
+              Agile
             </span>{" "}
             Development
           </li>
         </ul>
-      </div>
+      </>
     );
   }
 }

@@ -86,6 +86,19 @@ class NavBar extends Component {
         transition: "color .1s",
       },
     })(IconButton);
+    const StyledSwitch = withStyles({
+      root: {
+        transition: "background-color 2s, color 2s",
+      },
+      track: {
+        border: `1px solid ${theme.palette.primary.contrastText}`,
+        backgroundColor: theme.palette.primary.contrastText,
+      },
+      thumb: {
+        transition: "background-color 2s, color 2s",
+        backgroundColor: theme.palette.primary.contrastText,
+      },
+    })(Switch);
 
     return (
       <>
@@ -94,6 +107,7 @@ class NavBar extends Component {
           toggleDrawer={this.toggleDrawer}
           scroll={this.props.scroll}
           intro={this.props.intro}
+          scrollSmall={this.props.scrollSmall}
         />
 
         <nav
@@ -175,7 +189,7 @@ class NavBar extends Component {
               style={contact}
               key={5}
             >
-              <Switch
+              <StyledSwitch
                 onChange={this.handleChange}
                 checked={this.state.theme}
                 name="theme"

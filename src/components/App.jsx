@@ -16,6 +16,9 @@ import Work2 from "./workScreens/Work2";
 import ContentScreen from "./ContentScreen";
 import School0 from "./schoolScreens/School0";
 import Courses from "./schoolScreens/Courses";
+import Launchpad from "./schoolScreens/Launchpad";
+import Meetable from "./schoolScreens/Meetable";
+import Sync from "./projectScreens/Sync";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -112,6 +115,13 @@ class App extends React.Component {
 
   handleScroll = (event) => {
     event.preventDefault();
+  };
+
+  scrollSmall = (index) => {
+    this.setState(() => ({ intro: true }));
+    if (this.state.currOnScreen === this.state.ids[index]) return false;
+    document.getElementById(this.state.ids[index]).focus();
+    this.setState({ currOnScreen: this.state.ids[index] });
   };
 
   enteredCallback = (id) => {
@@ -248,6 +258,7 @@ class App extends React.Component {
             scroll={this.focusSlide}
             toggleTheme={this.toggleTheme}
             intro={this.doneIntro}
+            scrollSmall={this.scrollSmall}
           />
           <div
             style={{
@@ -270,7 +281,9 @@ class App extends React.Component {
                   alignItems: "center",
                 }}
               >
-                <Home0 />
+                <Work0
+                  style={{ transition: "color 2s, background-color 2s" }}
+                />
               </Screen>
               <Screen
                 refProp={this.homeRef}
@@ -349,27 +362,21 @@ class App extends React.Component {
                     <Courses />
                   </Screen>
                   <Screen screenStyle={{ ...screenStyle }} id="school2">
-                    <ContentScreen transition="slideright rotate fadein">
-                      Launchpad
-                    </ContentScreen>
+                    <Launchpad />
                   </Screen>
                   <Screen screenStyle={{ ...screenStyle }} id="school3">
-                    <ContentScreen transition="slideright rotate fadein">
-                      Meetable
-                    </ContentScreen>
+                    <Meetable />
                   </Screen>
                 </ScreenCollection>
               </div>
-              <div ref={this.projectsRef} id="projects" style={sectionStyle}>
+              <div ref={this.projectsRef} style={sectionStyle}>
                 <ScreenCollection
                   id="projects"
                   refObj={this.state.refs[3]}
                   entered={this.enteredCallback}
                 >
                   <Screen id="projects0" screenStyle={{ ...screenStyle }}>
-                    <ContentScreen transition="slideright rotate fadein">
-                      Sync
-                    </ContentScreen>
+                    <Sync />
                   </Screen>
                   <Screen id="projects1" screenStyle={{ ...screenStyle }}>
                     <ContentScreen transition="slideright rotate fadein">

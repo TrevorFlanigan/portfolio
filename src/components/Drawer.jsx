@@ -88,7 +88,7 @@ class Drawer extends Component {
               closeDrawer={this.props.toggleDrawer}
               name="Work"
               keyID={1}
-              scroll={this.props.scroll}
+              scroll={this.props.scrollSmall}
               icon={StyledWorkIcon}
               color={theme.palette.primary.contrastText}
             />
@@ -128,7 +128,7 @@ class Drawer extends Component {
             <DrawerOption
               closeDrawer={this.props.toggleDrawer}
               name="School"
-              scroll={this.props.scroll}
+              scroll={this.props.scrollSmall}
               keyID={2}
               icon={StyledSchoolIcon}
             />
@@ -185,7 +185,7 @@ class Drawer extends Component {
               closeDrawer={this.props.toggleDrawer}
               name="Projects"
               keyID={3}
-              scroll={this.props.scroll}
+              scroll={this.props.scrollSmall}
               icon={StyledCodeIcon}
             />
           )}
@@ -225,7 +225,7 @@ class Drawer extends Component {
               closeDrawer={this.props.toggleDrawer}
               name="Languages"
               keyID={4}
-              scroll={this.props.scroll}
+              scroll={this.props.scrollSmall}
               icon={ReactIcon}
             />
           )}
