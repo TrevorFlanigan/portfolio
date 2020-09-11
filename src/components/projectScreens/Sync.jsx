@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withTheme, withWidth, isWidthUp, Tooltip } from "@material-ui/core";
 import handleViewport from "react-in-viewport";
 import getStyle from "../GetStyle";
-import meetableLogo from "../../assets/meetableLogo.svg";
+import sync from "../../assets/sync.svg";
 class Sync extends Component {
   state = {
     loaded: "",
@@ -47,7 +47,7 @@ class Sync extends Component {
               fontSize: "clamp(1em, 3vw, 2em)",
               ...staticStyle,
             },
-            "slidedown slideright fadein"
+            "slidedown slideleft fadein"
           )}
         >
           Sync is a UBC Launchpad Project that allows users to watch videos over
@@ -119,16 +119,11 @@ class Sync extends Component {
         >
           <Tooltip title="Check it out!">
             <a
-              href="https://www.gomeetable.com"
+              href="https://sync.ubclaunchpad.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                height="100%"
-                className="hoverbrightness"
-                src={meetableLogo}
-                alt="logo"
-              />
+              <img src={sync} alt="logo" />
             </a>
           </Tooltip>
         </div>

@@ -12,9 +12,6 @@ import {
 import handleViewport from "react-in-viewport";
 import getStyle from "../GetStyle";
 import robot1 from "../../assets/robot1.mp4";
-import linerobot2 from "../../assets/linerobot2.mp4";
-import linerobot3 from "../../assets/linerobot3.mp4";
-import linerobot4 from "../../assets/linerobot4.mp4";
 
 import dancingrobot1 from "../../assets/dancingrobot1.mp4";
 import { SkipNext } from "@material-ui/icons";
@@ -22,15 +19,8 @@ import { SkipNext } from "@material-ui/icons";
 class Home0 extends Component {
   state = {
     loaded: "",
-    chosen: "Dancing Robot",
+    chosen: "Ricardo, the Dancing Robot",
   };
-
-  // componentDidMount() {
-  //   const list = document.getElementsByTagName("video");
-  //   for (let item of list) {
-  //     item.playbackRate = 2.0;
-  //   }
-  // }
 
   render() {
     const { inViewport, enterCount, theme } = this.props;
@@ -134,9 +124,9 @@ class Home0 extends Component {
                 {document.getElementById("source2")
                   ? document.getElementById("source2").getAttribute("src") ===
                     dancingrobot1
-                    ? "Dancing Robot"
+                    ? "Ricardo, the Dancing Robot"
                     : "Line Following/RC Robot"
-                  : "Dancing Robot"}
+                  : "Ricardo, the Dancing Robot"}
               </h1>
               <div
                 style={{
@@ -175,7 +165,7 @@ class Home0 extends Component {
                         chosen:
                           currVid === dancingrobot1
                             ? "Line Following/RC Robot"
-                            : "Dancing Robot",
+                            : "Ricardo, the Dancing Robot",
                       });
                       source.setAttribute(
                         "src",
@@ -288,7 +278,7 @@ class Home0 extends Component {
                   fontSize: "2vw",
                 }}
               >
-                Dancing Robot
+                Ricardo, the Dancing Robot
               </h1>
               <div
                 style={{

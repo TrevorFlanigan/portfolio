@@ -1,52 +1,25 @@
 import React, { Component } from "react";
-import { withTheme, withWidth, isWidthUp, Fade } from "@material-ui/core";
+import {
+  withTheme,
+  withWidth,
+  isWidthUp,
+  Fade,
+  Icon,
+  withStyles,
+} from "@material-ui/core";
 import handleViewport from "react-in-viewport";
 import getStyle from "../GetStyle";
-import a from "indefinite";
-import Carousel from "../Carousel";
+import { GitHub } from "@material-ui/icons";
+import { LinkedIn } from "@material-ui/icons";
+import { Description } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
+import { Tooltip } from "@material-ui/core";
+import resume from "../../assets/Trevor Flanigan - 2020 Resume.pdf";
+import { Button } from "@material-ui/core";
 
-const whatIAm = [
-  "a Full Stack Developer",
-  "driven",
-  "in 3rd Year @ UBC",
-  "goal-oriented",
-  "a COOP intern",
-  "a life-long learner",
-  "passionate about web development",
-  "a computer engineering student",
-  "a music lover",
-  "a Software Engineer at SecureKey Technologies Inc.",
-  "interested in robotics",
-];
 class Work0 extends Component {
   state = {
     loaded: "",
-    shown: whatIAm[0],
-    index: 0,
-    currAngle: 0,
-  };
-
-  componentDidMount() {
-    setInterval(() => {
-      this.increment();
-    }, 2000);
-    setInterval(() => {
-      this.rotate();
-    }, 10);
-  }
-
-  rotate = () => {
-    this.setState(() => ({
-      currAngle: this.state.currAngle + 1 >= 360 ? 0 : this.state.currAngle + 1,
-    }));
-  };
-
-  increment = () => {
-    this.setState(() => ({
-      index: this.state.index + 1 >= whatIAm.length ? 0 : this.state.index + 1,
-    }));
-
-    this.setState(() => ({ shown: whatIAm[this.state.index] }));
   };
 
   render() {
@@ -58,66 +31,78 @@ class Work0 extends Component {
     };
     let big = isWidthUp("md", this.props.width);
     let small = isWidthUp("sm", this.props.width);
+    const StyledButton = withStyles({
+      root: {
+        margin: big ? "1em" : small ? ".5em" : ".3em",
+        marginTop: 0,
+        border: `1px solid ${theme.palette.primary.contrastText}`,
+        borderRadius: "5px",
+        height: "60%",
+        flexGrow: 1,
+        color: theme.palette.primary.contrastText,
+        "& svg": {
+          fontSize: big ? "7em" : small ? "4em" : "3em",
+        },
+      },
+    })(IconButton);
+
+    const StyledIcon = withStyles({
+      root: {
+        width: "100%",
+        height: "100%",
+      },
+    })(Icon);
+
     return (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
+        className={`fullheight fullwidth unselectable`}
+        style={getStyle(
+          inViewport,
+          enterCount,
+          {
+            fontSize: "clamp(1em, 4vw, 4em)",
+            ...staticStyle,
+          },
+          "slideright fadein"
+        )}
       >
-        {/* <h1
-          style={getStyle(
-            inViewport,
-            enterCount,
-            {
-              fontSize: "clamp(1em, 10vw, 4em)",
-              ...staticStyle,
-            },
-            "slideleft fadein rotate"
-          )}
-        >
-          Hi!
-        </h1> */}
-        <code
-          className={`unselectable`}
+        <h1> Hiring? </h1>
+        <div
           style={{
-            // height: "50%",
-            textAlign: "center",
-            color: theme.palette.primary.contrastText,
-            fontSize: "clamp(2em, 10vw, 8em)",
+            display: "flex",
+            height: "100%",
+            width: "100%",
+            justifyContent: "space-evenly",
           }}
         >
-          I am
-        </code>
-        {/* <div> */}
-        <Carousel
-          items={whatIAm}
-          speed={2000}
-          style={{
-            // height: "50%",
-            textAlign: "center",
-            color: theme.palette.primary.contrastText,
-            fontSize: "clamp(2em, 10vw, 8em)",
-          }}
-        />
-        {/* </div> */}
-        {/* <Fade in>
-          <h1
-            style={getStyle(
-              inViewport,
-              enterCount,
-              {
-                fontSize: "clamp(2em, 10vw, 8em)",
-                ...staticStyle,
-                transform: `rotateZ(${this.state.currAngle})`,
-              },
-              "slideright fadein slidedown"
-            )}
-          >
-            {this.state.shown}
-          </h1>
-        </Fade> */}
+          <Tooltip title="Resume">
+            <StyledButton variant="outlined" download href={resume}>
+              <Description fontSize="large" />
+            </StyledButton>
+          </Tooltip>
+
+          <Tooltip title="LinkedIn">
+            <StyledButton
+              variant="outlined"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/TrevorFlanigan"
+            >
+              <LinkedIn fontSize="large" />
+            </StyledButton>
+          </Tooltip>
+          <Tooltip title="GitHub">
+            <StyledButton
+              iconStyle={{ width: "100%", height: "100%" }}
+              variant="outlined"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.github.com/TrevorFlanigan"
+            >
+              <GitHub />
+            </StyledButton>
+          </Tooltip>
+        </div>
       </div>
     );
   }

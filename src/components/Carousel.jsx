@@ -12,14 +12,10 @@ class Carousel extends Component {
     waiting: false,
   };
   componentDidMount() {
-    console.log(this.state.currWordLength);
-    console.log(this.state.currWord);
-
     setInterval(() => {
       this.blink();
     }, 530);
     setInterval(() => {
-      console.log(this.state.waiting);
       if (!this.state.waiting) {
         this.character();
       }
@@ -45,7 +41,6 @@ class Carousel extends Component {
     this.setState(() => ({
       currAngle: this.state.currAngle + 1 > 360 ? 0 : this.state.currAngle + 1,
     }));
-    console.log(this.state.currAngle);
   };
 
   blink = () => {

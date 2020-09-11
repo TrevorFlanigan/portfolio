@@ -10,8 +10,8 @@ import Home1 from "./homeScreens/Home1";
 import Home2 from "./homeScreens/Home2";
 import DarkTheme from "./DarkTheme";
 import Work0 from "./workScreens/Work0";
-import Work1 from "./workScreens/Work1";
-import Work2 from "./workScreens/Work2";
+import SecureKey from "./workScreens/SecureKey";
+import SecureKeyAcheivements from "./workScreens/SecureKeyAchievements";
 
 import ContentScreen from "./ContentScreen";
 import School0 from "./schoolScreens/School0";
@@ -19,6 +19,10 @@ import Courses from "./schoolScreens/Courses";
 import Launchpad from "./schoolScreens/Launchpad";
 import Meetable from "./schoolScreens/Meetable";
 import Sync from "./projectScreens/Sync";
+import Ravenous from "./projectScreens/Ravenous";
+import Jammming from "./projectScreens/Jammming";
+import Languages from "./languageScreens/Languages";
+import Contact from "./contactScreens/Contact";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +83,6 @@ class App extends React.Component {
 
   // call this to Disable
   disableScroll = () => {
-    console.log("disable");
     window.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
     window.addEventListener(
       this.wheelEvent,
@@ -92,7 +95,6 @@ class App extends React.Component {
 
   // call this to Enable
   enableScroll = () => {
-    console.log("enable");
     window.removeEventListener("DOMMouseScroll", this.preventDefault, false);
     window.removeEventListener(
       this.wheelEvent,
@@ -134,14 +136,12 @@ class App extends React.Component {
   };
 
   focusSlide = (index) => {
-    console.log(index);
     if (this.state.currOnScreen === this.state.ids[index]) return false;
     if (this.state.moving) return false;
     this.setState(() => ({
       moving: true,
       movingID: this.state.ids[index],
     }));
-    console.log(this.state.ids[index]);
     document
       .getElementById(this.state.ids[index])
       .scrollIntoView({ behavior: "smooth" });
@@ -177,7 +177,6 @@ class App extends React.Component {
     );
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
-        console.log("anchor clicked");
         e.preventDefault();
 
         document.querySelector(this.getAttribute("href")).scrollIntoView({
@@ -189,7 +188,6 @@ class App extends React.Component {
   }
   handleKeyDown = (event) => {
     if (this.state.moving) return;
-    console.log("keydown event");
     if (event.keyCode == 38 || event.keyCode == 40) {
       event.preventDefault();
       event.stopPropagation();
@@ -228,7 +226,6 @@ class App extends React.Component {
       backgroundColor: this.state.theme.palette.primary.main,
       transition: "background-color 2s, color 2s",
     };
-    console.log(this.state.movingID);
     const sectionStyle = {
       paddingTop: "50px",
       marginTop: "-50px",
@@ -281,9 +278,7 @@ class App extends React.Component {
                   alignItems: "center",
                 }}
               >
-                <Work0
-                  style={{ transition: "color 2s, background-color 2s" }}
-                />
+                <Home0 />
               </Screen>
               <Screen
                 refProp={this.homeRef}
@@ -322,30 +317,30 @@ class App extends React.Component {
                 >
                   <Screen
                     refProp={this.homeRef}
-                    screenStyle={{
-                      ...screenStyle,
-                    }}
+                    screenStyle={{ ...screenStyle }}
                     id="work0"
                   >
-                    <Work0
-                      style={{ transition: "color 2s, background-color 2s" }}
-                    />
+                    {/* <ContentScreen transition="slideright rotate fadein"> */}
+                    <SecureKey />
+                    {/* </ContentScreen> */}
                   </Screen>
                   <Screen
                     refProp={this.homeRef}
                     screenStyle={{ ...screenStyle }}
                     id="work1"
                   >
-                    {/* <ContentScreen transition="slideright rotate fadein"> */}
-                    <Work1 />
-                    {/* </ContentScreen> */}
+                    <SecureKeyAcheivements />
                   </Screen>
                   <Screen
                     refProp={this.homeRef}
-                    screenStyle={{ ...screenStyle }}
+                    screenStyle={{
+                      ...screenStyle,
+                    }}
                     id="work2"
                   >
-                    <Work2 />
+                    <Work0
+                      style={{ transition: "color 2s, background-color 2s" }}
+                    />
                   </Screen>
                 </ScreenCollection>
               </div>
@@ -379,16 +374,12 @@ class App extends React.Component {
                     <Sync />
                   </Screen>
                   <Screen id="projects1" screenStyle={{ ...screenStyle }}>
-                    <ContentScreen transition="slideright rotate fadein">
-                      Ravenous
-                    </ContentScreen>
+                    <Ravenous />
                   </Screen>
                   <Screen id="projects2" screenStyle={{ ...screenStyle }}>
-                    <ContentScreen transition="slideright rotate fadein">
-                      Jammming
-                    </ContentScreen>
+                    <Jammming />
                   </Screen>
-                  <Screen id="projects3" screenStyle={{ ...screenStyle }}>
+                  {/* <Screen id="projects3" screenStyle={{ ...screenStyle }}>
                     <ContentScreen transition="slideright rotate fadein">
                       Hacker Match
                     </ContentScreen>
@@ -397,7 +388,7 @@ class App extends React.Component {
                     <ContentScreen transition="slideright rotate fadein">
                       Stock Watcher
                     </ContentScreen>
-                  </Screen>
+                  </Screen> */}
                 </ScreenCollection>
               </div>
               <div ref={this.languagesRef} style={sectionStyle}>
@@ -407,14 +398,14 @@ class App extends React.Component {
                   entered={this.enteredCallback}
                 >
                   <Screen id="languages0" screenStyle={{ ...screenStyle }}>
-                    languages
+                    <Languages />
                   </Screen>
-                  <Screen id="languages1" screenStyle={{ ...screenStyle }}>
+                  {/* <Screen id="languages1" screenStyle={{ ...screenStyle }}>
                     languages
                   </Screen>
                   <Screen id="languages2" screenStyle={{ ...screenStyle }}>
                     languages
-                  </Screen>
+                  </Screen> */}
                 </ScreenCollection>
               </div>
               <div ref={this.contactRef} style={sectionStyle}>
@@ -424,7 +415,7 @@ class App extends React.Component {
                   entered={this.enteredCallback}
                 >
                   <Screen id="contact" screenStyle={{ ...screenStyle }}>
-                    contact me
+                    <Contact />
                   </Screen>
                 </ScreenCollection>
               </div>
