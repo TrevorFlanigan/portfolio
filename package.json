@@ -15,6 +15,7 @@
     "radium": "^0.26.0",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
     "react-in-viewport": "^1.0.0-alpha.14",
     "react-ionicons": "^3.1.4",

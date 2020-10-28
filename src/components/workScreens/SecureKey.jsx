@@ -35,7 +35,7 @@ class SecureKey extends Component {
           I built a web app that demonstrates the issuance and verification of
           digital identification.{" "}
         </p>
-        <Tooltip title="Check it out!">
+        {/* <Tooltip title="Check it out!">
           <a
             href="https://mobile-issuer-demo.herokuapp.com/"
             target="_blank"
@@ -48,7 +48,7 @@ class SecureKey extends Component {
               style={{ width: big ? "300px" : small ? "300px" : "300px" }}
             />
           </a>
-        </Tooltip>
+        </Tooltip> */}
       </div>
     );
   }

@@ -14,7 +14,7 @@ import { LinkedIn } from "@material-ui/icons";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { Tooltip } from "@material-ui/core";
-import resume from "../../assets/Trevor Flanigan - 2020 Resume.pdf";
+import resume from "../../assets/Trevor Flanigan Resume.pdf";
 import { Button } from "@material-ui/core";
 
 class Work0 extends Component {

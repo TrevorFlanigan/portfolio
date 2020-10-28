@@ -12,7 +12,7 @@ import DarkTheme from "./DarkTheme";
 import Work0 from "./workScreens/Work0";
 import SecureKey from "./workScreens/SecureKey";
 import SecureKeyAcheivements from "./workScreens/SecureKeyAchievements";
-
+import Construction from "./Construction";
 import ContentScreen from "./ContentScreen";
 import School0 from "./schoolScreens/School0";
 import Courses from "./schoolScreens/Courses";
@@ -23,6 +23,7 @@ import Ravenous from "./projectScreens/Ravenous";
 import Jammming from "./projectScreens/Jammming";
 import Languages from "./languageScreens/Languages";
 import Contact from "./contactScreens/Contact";
+import { isMobile } from "react-device-detect";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -149,6 +150,19 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+    if (isMobile) {
+      this.setState(() => ({ loaded: true }));
+      return;
+    }
     var supportsPassive = false;
     try {
       window.addEventListener(
@@ -175,15 +189,7 @@ class App extends React.Component {
       },
       false
     );
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
 
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth",
-        });
-      });
-    });
     this.setState(() => ({ loaded: true }));
   }
   handleKeyDown = (event) => {
@@ -231,6 +237,7 @@ class App extends React.Component {
       marginTop: "-50px",
       scrollSnapAlign: "start",
     };
+    if (isMobile) return <Construction />;
     return (
       <ThemeProvider theme={this.state.theme}>
         <div
@@ -238,7 +245,7 @@ class App extends React.Component {
           style={{
             fontFamily: "Spartan",
             fontWeight: "normal",
-            scrollSnapType: "y mandatory",
+            scrollSnapType: isMobile ? "none" : "y mandatory",
             overflowY: this.state.intro ? "auto" : "hidden",
           }}
           onKeyDown={this.handleKeyDown}

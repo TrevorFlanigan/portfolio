@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
 import handleViewport from "react-in-viewport";
-
+import { isMobile } from "react-device-detect";
 class ScreenCollectionBlock extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -17,7 +17,7 @@ class ScreenCollectionBlock extends Component {
     return (
       <div
         style={{
-          marginTop: this.props.ignoreNav && "50px",
+          marginTop: (this.props.ignoreNav || isMobile) && "50px",
           marginBottom: this.props.ignoreNav && "-50px",
         }}
       >
@@ -28,10 +28,11 @@ class ScreenCollectionBlock extends Component {
           options={{
             friction: 0.5,
             accessibility: true,
-            pageDots: false,
-            draggable: false,
-            prevNextButtons: this.props.children.length,
+            pageDots: isMobile,
+            draggable: isMobile,
+            prevNextButtons: !isMobile && this.props.children.length,
             hash: true,
+            freeScroll: isMobile,
           }}
         >
           {this.props.children}

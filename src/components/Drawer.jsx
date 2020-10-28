@@ -166,17 +166,27 @@ class Drawer extends Component {
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Hacker Match"
-                scrollToFlickity
-                keyID={"#projects3"}
-                scroll={this.props.scroll}
+                // scrollToFlickity
+                // keyID={"#projects3"}
+                scroll={async (e) => {
+                  await window.open(
+                    "https://github.com/tsa87/hacker-match-app",
+                    "_target"
+                  );
+                }}
                 icon={HackerMatchIcon}
               />
               <DrawerOption
                 closeDrawer={this.props.toggleDrawer}
                 name="Stock Watcher"
-                scrollToFlickity
-                keyID={"#projects4"}
-                scroll={this.props.scroll}
+                // scrollToFlickity
+                // keyID={"#projects4"}
+                scroll={async () => {
+                  await window.open(
+                    "https://github.com/cowmanjoe/stock-watcher",
+                    "_target"
+                  );
+                }}
                 icon={StockWatchIcon}
               />
             </>
@@ -207,7 +217,7 @@ class Drawer extends Component {
                 closeDrawer={this.props.toggleDrawer}
                 name="Node.js"
                 scrollToFlickity
-                keyID={"#languages1"}
+                keyID={"#languages0"}
                 scroll={this.props.scroll}
                 icon={NodeIcon}
               />
@@ -215,7 +225,7 @@ class Drawer extends Component {
                 closeDrawer={this.props.toggleDrawer}
                 name="MongoDB"
                 scrollToFlickity
-                keyID={"#languages2"}
+                keyID={"#languages0"}
                 scroll={this.props.scroll}
                 icon={MongoIcon}
               />
